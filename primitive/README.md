@@ -1,3 +1,5 @@
-A simple Anomaly Detection algorithm
-  Data : Sine wave with random noise and anomalies added
-  Anomaly Detection : Data points that are 'threshold' times the Standard Deviation away from Mean
+# Anomaly Detection in Data Stream
+
+## Overview
+This project demonstrates a simple anomaly detection algorithm applied to a data stream. The data stream is simulated as a sine wave with random noise and occasional anomalies added. The anomaly detection algorithm identifies data points that deviate significantly from the expected pattern based on the standard deviation from the mean.
+
