@@ -3,24 +3,28 @@ from collections import deque
 import matplotlib.pyplot as plt
 from ipywidgets import interact
 
-def dataStream(n=1000):
+def dataStream(N = 1000):
     '''
-        input : number of data points
-        return : data stream with amalgamation of random noise and anomalies 
+        TODO: Generate a stream of data 
+        \param N Number of data points to generate
+
+        \return Data stream with seasonal, noise and anomalies added
     '''
-    seasonal = np.sin(np.linspace(0, 20, n)) 
-    noise = np.random.normal(0, 0.5, n)  # Random noise
-    anomalies = np.random.choice([0, 5, -5], size=n, p=[0.95, 0.025, 0.025]) 
+    seasonal = np.sin(np.linspace(0, 20, N)) 
+    noise = np.random.normal(0, 0.5, N)  # Random noise
+    anomalies = np.random.choice([0, 5, -5], size=N, p=[0.95, 0.025, 0.025]) 
 
     return seasonal + noise + anomalies
 
 
 def anomalyDetection(stream, window_size=20, threshold=3):
     '''
-        input : datastream, window_size : for analysing batch of data, threshold : 
-        number of standard deviations for a data point to be away from its mean to 
-        be flaged as an anomaly 
-        return : list of tuple of index and the point flaged as anomaly
+        TODO: Detect anomalies 
+        \param stream Data stream 
+        \param window_size Size of the deque 
+        \param threshold Number of standard deviations away from mean to get(for a data point) flagged as anomaly
+
+        \return anomalies List of index and value each detected anomaly
     '''
     window = deque(maxlen=window_size)
     anomalies = []
@@ -37,6 +41,11 @@ def anomalyDetection(stream, window_size=20, threshold=3):
 
 
 def plotData(step):
+        '''
+        TODO: Slider for visualization 
+        \param step Number of data points to display (dynamically updated)
+    '''
+
     plt.clf()  
     x = np.arange(step)
     y = data[:step]
@@ -44,9 +53,10 @@ def plotData(step):
 
     plt.figure(figsize=(25,5))
     plt.plot(x, y, label='Data Stream')
-    if anomalies:
+    # anomalies identified as red dots
+    if anomalies:                                           
         anomaly_indices, anomaly_values = zip(*anomalies)  
-        plt.scatter(anomaly_indices, anomaly_values, color='red', label='Anomalies')
+        plt.scatter(anomaly_indices, anomaly_values, color='red', label='Anomalies') 
 
     plt.xlim(0, len(data))
     plt.ylim(-8, 8)
