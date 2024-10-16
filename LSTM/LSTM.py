@@ -8,13 +8,13 @@ from pykalman import KalmanFilter
 
 def simulate_data_stream(n_points=1000, seasonality=100, noise=1, anomaly_rate=0.01):
     '''
-    TODO: Simulate a data stream with seasonal patterns, noise, and anomalies.
-    \param n_points: Number of data points to simulate.
-    \param seasonality: Period of the seasonal pattern.
-    \param noise: Standard deviation of the noise to be added.
-    \param anomaly_rate: Proportion of data points to be treated as anomalies.
+        TODO: Simulate a data stream with seasonal patterns, noise, and anomalies.
+        \param n_points: Number of data points to simulate.
+        \param seasonality: Period of the seasonal pattern.
+        \param noise: Standard deviation of the noise to be added.
+        \param anomaly_rate: Proportion of data points to be treated as anomalies.
 
-    \return: A numpy array representing the simulated data stream with anomalies.
+        \return: A numpy array representing the simulated data stream with anomalies.
     '''
     time = np.arange(n_points)
     seasonal_pattern = 10 * np.sin(2 * np.pi * time / seasonality)
@@ -29,10 +29,10 @@ def simulate_data_stream(n_points=1000, seasonality=100, noise=1, anomaly_rate=0
 
 def create_lstm_autoencoder(input_shape):
     '''
-    TODO: Create an enhanced LSTM autoencoder model for anomaly detection.
-    \param input_shape: Shape of the input data for the LSTM model.
+        TODO: Create an enhanced LSTM autoencoder model for anomaly detection.
+        \param input_shape: Shape of the input data for the LSTM model.
 
-    \return: A compiled LSTM autoencoder model.
+        \return: A compiled LSTM autoencoder model.
     '''
     model = tf.keras.Sequential([
         tf.keras.layers.LSTM(128, activation='relu', return_sequences=True, input_shape=input_shape),
